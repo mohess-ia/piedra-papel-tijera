@@ -17,12 +17,6 @@ function eleccionMaquina() {
 
 function eleccionJugador() {
   let eleccion = prompt("Que piensas elegir?\n1.Piedra\n2.Papel\n3.Tijeras").toLocaleLowerCase();
-  if (eleccion == "" || eleccion == !isNaN(eleccion)) {
-    alert("ERROR!");
-  } else if (!["piedra", "papel", "tijeras"].includes(eleccion))
-  {
-    alert("ERROR!");
-  }
   return eleccion;
 }
 
@@ -34,30 +28,35 @@ function jugarPartida() {
     let ganadorRonda = "";
     if (humano == maquina) {
     } else if (humano == "tijeras" && maquina == "papel") {
-      puntosHumano += 1;
+
       ganadorRonda = "Jugador";
     } else if (humano == "papel" && maquina == "piedra") {
-      puntosHumano += 1;
+
       ganadorRonda = "Jugador";
     } else if (humano == "piedra" && maquina == "tijeras") {
-      puntosHumano += 1;
+
       ganadorRonda = "Jugador";
-    } else if (!["piedra", "papel", "tijeras"].includes(humano)){
-        alert("ERROR!")
     }else{
-        puntosMaquina += 1;
         ganadorRonda = "Maquina";
+    }
+
+    if(ganadorRonda == "Jugador"){
+      puntosHumano+=1
+     
+    }else if(ganadorRonda == "Maquina"){
+      puntosMaquina+=1
+      
     }
 
     if (humano == maquina) {
       alert(
-        `HABEIS EMPATADO!\nEleccion Jugador: ${humano} y ${puntosHumano}pts\nEleccion Maquina: ${maquina} y ${puntosHumano}pts`
-      );
-    } else {
+        `HABEIS EMPATADO!\nEleccion Jugador: ${humano} y ${puntosHumano}pts\nEleccion Maquina: ${maquina} y ${puntosMaquina}pts`
+      )} else {
       alert(
-        `HA GANADO ${ganadorRonda}\nEleccion Jugador: ${humano} y ${puntosHumano}pts\nEleccion Maquina: ${maquina} y ${puntosHumano}pts`
-      );
+        `HA GANADO ${ganadorRonda}\nEleccion Jugador: ${humano} y ${puntosHumano}pts\nEleccion Maquina: ${maquina} y ${puntosMaquina}pts`
+      )
     }
+    
   }
 
   jugarRonda(eleccionJugador(), eleccionMaquina());
